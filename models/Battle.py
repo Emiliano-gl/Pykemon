@@ -1,4 +1,4 @@
-from src.constants import *
+from models.constants import *
 
 
 class Battle:
@@ -46,30 +46,6 @@ class Battle:
     def print_current_status(self):
         print(f"\n{self.pokemon1.name} has {str(self.pokemon1.current_hp)} hp left!")
         print(f"{self.pokemon2.name} has {str(self.pokemon2.current_hp)} hp left!\n")
-
-
-class Pokemon:
-
-    def __init__(self, name, level, type1, type2):
-        self.name = name
-        self.level = level
-        self.type1 = type1
-        self.type2 = type2
-        self.attacks = []
-        self.stats = {}
-        self.current_status = 0
-        self.current_hp = 0
-
-
-class Attack:
-
-    def __init__(self, name, t, category, pp, power, accuracy):
-        self.name = name
-        self.type = t
-        self.category = category
-        self.pp = pp
-        self.power = power
-        self.accuracy = accuracy
 
 
 class Turn:

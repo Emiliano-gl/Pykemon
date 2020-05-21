@@ -1,4 +1,6 @@
-from src.models import *
+from models.Battle import *
+from models.Pokemon import *
+from models.models import *
 
 # First, define pokemon with its stats
 pokemon1 = Pokemon("Bulbasaur", 100, "grass", "poison")
