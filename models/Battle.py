@@ -70,8 +70,12 @@ class Battle:
 
         # Compute type effectiveness
         effectiveness1 = TYPE_CHART[pokemon2.type1][attack.type]
-        effectiveness2 = TYPE_CHART[pokemon2.type2][attack.type]
-        effectiveness_final = effectiveness1 * effectiveness2
+
+        if pokemon2.type2:
+            effectiveness2 = TYPE_CHART[pokemon2.type2][attack.type]
+            effectiveness_final = effectiveness1 * effectiveness2
+        else:
+            effectiveness_final = effectiveness1
 
         # Compute Critical
         critical = 1
