@@ -3,23 +3,14 @@ from models.Pokemon import *
 from models.models import *
 
 # First, define pokemon with its stats
-pokemon1 = Pokemon("Bulbasaur", 100, "grass", "poison")
-pokemon2 = Pokemon("Charmander", 100, "fire", None)
+pokemon1 = Pokemon("Bulbasaur", 100, 11, 3)
+pokemon2 = Pokemon("Charmander", 100, 9, None)
 
 pokemon1.current_hp = 45
 pokemon2.current_hp = 39
 
 # Stats
-pokemon1.stats = {
-    HP: 45,
-    ATTACK: 49,
-    DEFENSE: 49,
-    SPATTACK: 65,
-    SPDEFENSE: 65,
-    SPEED: 45
-}
-
-pokemon2.stats = {
+pokemon1.baseStats = {
     HP: 39,
     ATTACK: 52,
     DEFENSE: 43,
@@ -28,9 +19,58 @@ pokemon2.stats = {
     SPEED: 65
 }
 
+pokemon1.ev = {
+    HP: 0,
+    ATTACK: 0,
+    DEFENSE: 0,
+    SPATTACK: 0,
+    SPDEFENSE: 0,
+    SPEED: 0
+}
+
+pokemon1.iv = {
+    HP: 21,
+    ATTACK: 21,
+    DEFENSE: 21,
+    SPATTACK: 21,
+    SPDEFENSE: 21,
+    SPEED: 21
+}
+
+pokemon1.compute_stats()
+
+pokemon2.baseStats = {
+    HP: 39,
+    ATTACK: 52,
+    DEFENSE: 43,
+    SPATTACK: 80,
+    SPDEFENSE: 65,
+    SPEED: 65
+}
+
+pokemon2.ev = {
+    HP: 0,
+    ATTACK: 0,
+    DEFENSE: 0,
+    SPATTACK: 0,
+    SPDEFENSE: 0,
+    SPEED: 0
+}
+
+pokemon2.iv = {
+    HP: 21,
+    ATTACK: 21,
+    DEFENSE: 21,
+    SPATTACK: 21,
+    SPDEFENSE: 21,
+    SPEED: 21
+}
+
+pokemon2.compute_stats()
+
 # Attacks
-pokemon1.attacks = [Attack("Scratch", "normal", PHYSICAL, 10, 10, 100)]
-pokemon2.attacks = [Attack("Scratch", "normal", PHYSICAL, 10, 10, 100)]
+pokemon1.attacks = [Attack("Vine Whip", 11, PHYSICAL, 10, 10, 100)]
+pokemon2.attacks = [Attack("Scratch", 0, PHYSICAL, 10, 10, 100)]
 
 # Start Battle
 battle = Battle(pokemon1, pokemon2)
