@@ -75,7 +75,8 @@ class Battle:
 
         # Compute Critical
         critical = 1
-        if random.random() < 0.1:
+        if random.random() <= 0.1:
+            print(f"{pokemon1.name} did a critical attack!")
             critical = 1.5
 
         return stab * effectiveness_final * critical
