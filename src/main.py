@@ -1,3 +1,5 @@
+import pygame
+from pygame.locals import *
 from models.Battle import *
 from models.Pokemon import *
 
@@ -89,16 +91,78 @@ def ask_command(pokemon):
     return command
 
 
-while not battle.is_finished():
-    # First for command
-    command1 = ask_command(pokemon1)
-    command2 = ask_command(pokemon2)
+def update():
+    pass
 
-    turn = Turn()
-    turn.command1 = command1
-    turn.command2 = command2
 
-    if turn.can_start():
-        # Execute turn
-        battle.execute_turn(turn)
-        battle.print_current_status()
+def load_resources():
+    load_pokemon_image(pokemon1, True)
+    load_pokemon_image(pokemon2, False)
+
+
+def render(screen):
+    screen.fill((255, 255, 255))
+    render_pokemons(screen, pokemon1, pokemon2)
+    pygame.display.update()
+
+
+def load_pokemon_image(pokemon, is_player):
+    pokemon_name = pokemon.name.lower()
+
+    if is_player:
+        pokemon_img = pygame.image.load('assets/pokemon/' + pokemon_name + "_back.png")
+        pokemon_img = pygame.transform.scale(pokemon_img, (300, 300))
+
+        pokemon.renderer = pokemon_img
+    else:
+        pokemon_img = pygame.image.load('assets/pokemon/' + pokemon_name + "_front.png")
+        pokemon_img = pygame.transform.scale(pokemon_img, (300, 300))
+
+        pokemon.renderer = pokemon_img
+
+
+def render_pokemons(screen, pokemon_1, pokemon_2):
+    pokemon_1.render(screen, (20, 300))
+    pokemon_2.render(screen, (480, 40))
+
+
+def main():
+    pygame.init()
+    screen = pygame.display.set_mode((800, 640))
+    pygame.display.set_caption("Pykemon")
+
+    load_resources()
+
+    clock = pygame.time.Clock()
+    clock.tick(60)
+    stopped = False
+
+    while not stopped:
+        for event in pygame.event.get():
+            if event.type == QUIT:
+                stopped = True
+
+        # Main pokemon battle loop
+        # First ask for the commands
+
+        '''
+        # First for command
+        command1 = ask_command(pokemon1)
+        command2 = ask_command(pokemon2)
+    
+        turn = Turn()
+        turn.command1 = command1
+        turn.command2 = command2
+    
+        if turn.can_start():
+            # Execute turn
+            battle.execute_turn(turn)
+            battle.print_current_status()
+        '''
+
+        update()
+        render(screen)
+
+
+if __name__ == "__main__":
+    main()
